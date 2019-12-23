@@ -10,7 +10,7 @@ import { ServicesComponent } from './services/services.component';
 import { PropertyBindingComponent } from './property-binding/property-binding.component';
 
 @NgModule({
-  declarations: [
+  declarations: [//all components goes here
     AppComponent,
     CoursesComponents,
     CourseComponent,
@@ -21,7 +21,7 @@ import { PropertyBindingComponent } from './property-binding/property-binding.co
   imports: [
     BrowserModule
   ],
-  providers: [
+  providers: [//all services goes here
     CoursesService//Registered here the courses service in provider
   ],
   bootstrap: [AppComponent]
