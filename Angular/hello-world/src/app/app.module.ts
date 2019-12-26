@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CourseComponent } from './course/course.component';
 import { ServicesComponent } from './services/services.component';
 import { PropertyBindingComponent } from './property-binding/property-binding.component';
+import { BootstrapDemoComponent } from './bootstrap-demo/bootstrap-demo.component';
 
 @NgModule({
   declarations: [//all components goes here
@@ -16,7 +17,8 @@ import { PropertyBindingComponent } from './property-binding/property-binding.co
     CourseComponent,
     DirectivesComponent,
     ServicesComponent,
-    PropertyBindingComponent
+    PropertyBindingComponent,
+    BootstrapDemoComponent
   ],
   imports: [
     BrowserModule
