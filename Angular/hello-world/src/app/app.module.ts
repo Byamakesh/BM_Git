@@ -16,6 +16,10 @@ import { EventfilteringComponent } from './eventfiltering/eventfiltering.compone
 import { TemplatevariableComponent } from './templatevariable/templatevariable.component';
 import { TwowaybindingComponent } from './twowaybinding/twowaybinding.component';
 import { PipesComponent } from './pipes/pipes.component';
+import { Assignment2FavouriteComponentComponent } from './assignment2-favourite-component/assignment2-favourite-component.component';
+import { ComponentAPIComponent } from './component-api/component-api.component';
+import { Assignment3TitleCasingComponent } from './assignment3-title-casing/assignment3-title-casing.component';
+import { TitleCasePipe } from './title-case.pipe';
 
 @NgModule({
   declarations: [//all components, pipes goes here
@@ -31,7 +35,11 @@ import { PipesComponent } from './pipes/pipes.component';
     TemplatevariableComponent,
     TwowaybindingComponent,
     PipesComponent,
-    SummaryPipe
+    SummaryPipe,
+    Assignment2FavouriteComponentComponent,
+    ComponentAPIComponent,
+    Assignment3TitleCasingComponent,
+    TitleCasePipe
   ],
   imports: [
     BrowserModule,
