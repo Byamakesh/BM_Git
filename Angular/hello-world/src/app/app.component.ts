@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'hello-world';
+  post = {
+    title: 'title',
+    isFavorite: true
+  }
+  // onFavoriteChanged(isFavorite) {
+  //   console.log("Favorite changed ", isFavorite);//display event value
+  // }
+
+  // Passing Event Data - complex type value: object
+  onFavoriteChanged(eventArgs) {
+    console.log("Favorite changed ", eventArgs);//display event value
+  }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComponentAPIComponent } from './component-api.component';
+import { ReusableComponentsComponent } from './reusable-components.component';
 
-describe('ComponentAPIComponent', () => {
-  let component: ComponentAPIComponent;
-  let fixture: ComponentFixture<ComponentAPIComponent>;
+describe('ReusableComponentsComponent', () => {
+  let component: ReusableComponentsComponent;
+  let fixture: ComponentFixture<ReusableComponentsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComponentAPIComponent ]
+      declarations: [ ReusableComponentsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComponentAPIComponent);
+    fixture = TestBed.createComponent(ReusableComponentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
