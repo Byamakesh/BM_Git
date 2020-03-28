@@ -20,10 +20,13 @@ import { Assignment2FavouriteComponentComponent } from './assignment2-favourite-
 import { Assignment3TitleCasingComponent } from './assignment3-title-casing/assignment3-title-casing.component';
 import { TitleCasePipe } from './title-case.pipe';
 import { ReusableComponentsComponent } from './reusable-components/reusable-components.component';
+import { Assignment4LikeComponentComponent } from './assignment4-like-component/assignment4-like-component.component';
 import { DirectivesComponentComponent } from './directives-component/directives-component.component';
+import { InputFormatDirective } from './input-format.directive';
+import { Assignment5ZippyComponent } from './assignment5-zippy/assignment5-zippy.component';
 
 @NgModule({
-  declarations: [//all components, pipes goes here
+  declarations: [//all components, pipes, directives goes here
     AppComponent,
     CoursesComponents,
     CourseComponent,
@@ -41,7 +44,10 @@ import { DirectivesComponentComponent } from './directives-component/directives-
     Assignment3TitleCasingComponent,
     TitleCasePipe,
     ReusableComponentsComponent,
-    DirectivesComponentComponent
+    Assignment4LikeComponentComponent,
+    DirectivesComponentComponent,
+    InputFormatDirective,
+    Assignment5ZippyComponent,
   ],
   imports: [
     BrowserModule,
