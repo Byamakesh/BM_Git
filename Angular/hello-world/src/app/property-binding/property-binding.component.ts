@@ -26,7 +26,8 @@ import { Component, OnInit } from '@angular/core';
   //In Example 1, src is a property and we are binding this to fields {{imgUrl}}. This is called property binding also known as interpolation.
   //In Example 2, src is a property is within square[] bracket and also binding the field with it.
   //There is no difference between Example 1 & Example 2. Both are correct but Example 2 is looks cleaner and shorter. So can be prefered to use.
-
+  //Property binding works only one way e.g: from component to DOM. Not DOM to component.
+  //So any change in DOM like textbox it'll not impact in code.
   //In above example of Attribute Binding we used [attr.colspan] because we need to tell angular by using attr. that colspan is an attribute of HTML element e.g: <td> otherwise we'll get exception that it is unknow to DOM.
 })
 export class PropertyBindingComponent {

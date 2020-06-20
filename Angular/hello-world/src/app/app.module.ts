@@ -1,6 +1,7 @@
 import { SummaryPipe } from './summary.pipe';
 import { CoursesService } from './courses.service';
 import { DirectivesComponent } from './directives/directives.component';
+import { DependencyInjectionComponent } from './dependency-injection/dependency-injection.component';
 import { CoursesComponents } from './courses.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +25,7 @@ import { Assignment4LikeComponentComponent } from './assignment4-like-component/
 import { DirectivesComponentComponent } from './directives-component/directives-component.component';
 import { InputFormatDirective } from './input-format.directive';
 import { Assignment5ZippyComponent } from './assignment5-zippy/assignment5-zippy.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [//all components, pipes, directives goes here
@@ -31,6 +33,7 @@ import { Assignment5ZippyComponent } from './assignment5-zippy/assignment5-zippy
     CoursesComponents,
     CourseComponent,
     DirectivesComponent,
+    DependencyInjectionComponent,
     ServicesComponent,
     PropertyBindingComponent,
     BootstrapDemoComponent,
@@ -48,6 +51,7 @@ import { Assignment5ZippyComponent } from './assignment5-zippy/assignment5-zippy
     DirectivesComponentComponent,
     InputFormatDirective,
     Assignment5ZippyComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,

@@ -5,3 +5,10 @@
 body {
     padding: 20px;
 }
+
+
+/* For all input fields error */
+
+.form-control.ng-invalid.ng-touched {
+    border: 2px solid red;
+}

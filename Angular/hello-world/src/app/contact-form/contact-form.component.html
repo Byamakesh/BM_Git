@@ -1,0 +1,120 @@
+<!-- ----------------Building a bootstrap form start------------------------ -->
+<!-- <form>
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input type="text" id="firstName" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea id="comment" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form> -->
+
+<!-- ----------------Building a bootstrap form end------------------------ -->
+
+
+<!-- ----------------Types of form. Using ngModel start------------------------ -->
+<!--
+    *To Validate an input control we need to create an instance of FormControl class. With this we can do below things:
+        >value - check value in an input field
+        >touched
+        >untouched
+        >dirty - value changed
+        >pristine - value not changed
+        >valid
+        >errors - if not valid
+    *Similarly we have another class called FormGroup which represents a group of controls in a form.
+        >Also all above properties of FormControl class are available in FormGroup class.
+    *So to validate a form and its control we have to use FormGroup for form first and FormControl for each control. In this way we can track each controla nd form.
+    *Two types of form creation approach:
+        >Templae driven approach
+            #Less code, less control on fields, easy to write code
+        >Reactive form approach
+            #More code, more control on fields, unit testable, more code to write -->
+
+
+<!-- Using Templae driven approach -->
+<!-- name - to distinguish each control for ngModel else will get an error on browser.
+    change event to call log() method to print in console.
+    #firstName - a variable reference of ngModel which needs to pass as parameter in log() to print in console.
+    log() implemented in .ts file.
+    Now enter some value in FirstName field and go to browser console, we can see ngModel object and its properties.
+    We can check each property to see the values that changed.
+-->
+<!-- <form>
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form> -->
+<!-- ----------------Types of form. Using ngModel end------------------------ -->
+
+
+<!-- ----------------Form Validation start------------------------ -->
+<!-- Validating first name if it touched and left without any value -->
+<!-- <form>
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.value">First Name is required</div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form> -->
+<!-- ----------------Form Validation end------------------------ -->
+
+
+<!-- ----------------Specific Validation errors start------------------------ -->
+<!-- minlength and pattern not working as expected, need to check later. -->
+<!-- required: can not left blank
+    minlength: minimum no of value
+    maxlength: maximum no of value
+    pattern: for regular expression
+    pattern="banana": only banana word is valid
+-->
+<!-- <form>
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.value">
+            <div *ngIf="firstName.errors.required">First Name is required</div>
+            <div *ngIf="firstName.errors.minlength">First Name should be minimum 3 characters</div>
+            <div *ngIf="firstName.errors.pattern">First Name doesn't match the pattern</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form> -->
+<!-- ----------------Specific Validation errors end------------------------ -->
+
+
+<!-- ----------------Specific Validation errors end------------------------ -->
+<form>
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.value">
+            <div *ngIf="firstName.errors.required">First Name is required</div>
+            <div *ngIf="firstName.errors.minlength">First Name should be minimum 3 characters</div>
+            <div *ngIf="firstName.errors.pattern">First Name doesn't match the pattern</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form>
+<!-- ----------------Specific Validation errors end------------------------ -->
