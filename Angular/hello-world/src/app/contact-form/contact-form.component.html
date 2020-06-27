@@ -61,8 +61,8 @@
 <!-- <form>
     <div class="form-group">
         <label for="firstName"> First Name</label>
-        <input ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
-        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.value">First Name is required</div>
+        <input required ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is required</div>
     </div>
     <div class="form-group">
         <label for="comment">Comment</label>
@@ -80,14 +80,17 @@
     maxlength: maximum no of value
     pattern: for regular expression
     pattern="banana": only banana word is valid
+
+    Dynamic error value using interpolation{{ }}
+    <div *ngIf="firstName.errors.minlength">First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters</div>
 -->
 <!-- <form>
     <div class="form-group">
         <label for="firstName"> First Name</label>
         <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
-        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.value">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
             <div *ngIf="firstName.errors.required">First Name is required</div>
-            <div *ngIf="firstName.errors.minlength">First Name should be minimum 3 characters</div>
+            <div *ngIf="firstName.errors.minlength">First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters</div>
             <div *ngIf="firstName.errors.pattern">First Name doesn't match the pattern</div>
         </div>
     </div>
@@ -100,21 +103,291 @@
 <!-- ----------------Specific Validation errors end------------------------ -->
 
 
-<!-- ----------------Specific Validation errors end------------------------ -->
-<form>
+<!-- ----------------Cleaner Templates start------------------------ -->
+<!-- Intention is to break long lines of code to make view simple but VScode is 
+    automatically format this like below when saved -->
+<!-- <form>
     <div class="form-group">
         <label for="firstName"> First Name</label>
         <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
-        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.value">
-            <div *ngIf="firstName.errors.required">First Name is required</div>
-            <div *ngIf="firstName.errors.minlength">First Name should be minimum 3 characters</div>
-            <div *ngIf="firstName.errors.pattern">First Name doesn't match the pattern</div>
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            <div *ngIf="firstName.errors.required">
+                First Name is required
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+                First Name doesn't match the pattern
+            </div>
         </div>
     </div>
     <div class="form-group">
         <label for="comment">Comment</label>
-        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+        </textarea>
     </div>
     <button class="btn btn-primary">Submit</button>
+</form> -->
+<!-- ----------------Cleaner Templates end------------------------ -->
+
+
+<!-- ----------------ngForm start------------------------ -->
+<!-- 
+    #f: is a variable like template variable
+    submit(f): implemented on component.ts and f is the parameter by which can retrieve all properties values.
+ -->
+<!-- <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            <div *ngIf="firstName.errors.required">
+                First Name is required
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+                First Name doesn't match the pattern
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+        </textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form> -->
+<!-- ----------------ngForm end------------------------ -->
+
+
+<!-- ----------------ngModelGroup start------------------------ -->
+<!--
+    *Like how we have ngModel, we also have ngModelGroup. We use this to structure a form as a tree.
+    *Like below we had earlier ngModel with firstName. Likewise we may have several ngModel like 
+      address, shipping, billing, contact etc.
+    *To handle all in a tree structure, use ngModelGroup as below.
+    *We can reference a variable like template variable and can use anywhere in this form to validate
+      antire form at all.
+    *If this is the case, we can have another div<> and place all validations there as below.
+ -->
+<!-- <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact" #contact="ngModelGroup">
+        <div *ngIf="!contact.valid">some error message</div>
+        <div class="form-group">
+            <label for="firstName"> First Name</label>
+            <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+            <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+                <div *ngIf="firstName.errors.required">
+                    First Name is required
+                </div>
+                <div *ngIf="firstName.errors.minlength">
+                    First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters
+                </div>
+                <div *ngIf="firstName.errors.pattern">
+                    First Name doesn't match the pattern
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+        </textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form> -->
+<!-- ----------------ngModelGroup end------------------------ -->
+
+
+<!-- ----------------ControlClasses and Directives start------------------------ -->
+<!--
+    In angular we have 2 classes to track the state of input fields and validity.
+    FormControl and FormGroup. 
+    *FormControl::
+        >Represents one input field.
+        >When we apply ngModel directive on an input field, angular automatically create an object of
+            FormControl object and associate with the input field.
+
+    *FormGroup::
+        >Represents a group of input fields.
+        >FormGroup class used to represent an entire form and optionally groups within a form.
+            #We have ngForm directive which auomatically applied to all form elements and angular
+                creates an object internally by which can track the state of properties.
+            #Now if we have complex form of several input fields we can use ngModelGroup and this is
+                similar to ngForm directive which creates an object internally by which can track the
+                state of properties.
+    *ngForm Vs ngModelGroup
+        >ngForm - It exposes an output property with ngSubmit to submit the form.
+        >ngModelGroup - It doesn't have output property, it onle make a group/structure like tree.
+ -->
+<!-- ----------------ControlClasses and Directives end------------------------ -->
+
+
+<!-- ----------------Disabling the Submit Button start------------------------ -->
+<!-- If the form is not valid, than the button will be disabled. -->
+<!-- <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact" #contact="ngModelGroup">
+        <div *ngIf="!contact.valid">some error message</div>
+        <div class="form-group">
+            <label for="firstName"> First Name</label>
+            <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+            <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+                <div *ngIf="firstName.errors.required">
+                    First Name is required
+                </div>
+                <div *ngIf="firstName.errors.minlength">
+                    First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters
+                </div>
+                <div *ngIf="firstName.errors.pattern">
+                    First Name doesn't match the pattern
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+        </textarea>
+    </div>
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form> -->
+<!-- ----------------Disabling the Submit Button end------------------------ -->
+
+
+<!-- ----------------Checkbox start------------------------ -->
+<!-- 
+    *Here we have added one checknox.
+    *Also added a paragraph with ngForm value. Used pipe(|) with json to convert the data as json.
+        This technique is used only for diagnosis purpose.
+ -->
+<!-- <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            <div *ngIf="firstName.errors.required">
+                First Name is required
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+                First Name doesn't match the pattern
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+        </textarea>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ngModel name="isSubscribed">Subscribe to mailing list
+        </label>
+    </div>
+    <p>
+        {{f.value | json}}
+    </p>
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form> -->
+<!-- ----------------Checkbox end------------------------ -->
+
+
+<!-- ----------------Drop-down list start------------------------ -->
+<!-- 
+    *Here [value]="method.id" - this only shows id.
+    *If we want to send id and value both together to server back can use [ngValue]="method".
+    *To select multiple value in dropdown list than use "multiple" as below here:
+        <select multiple ngModel name="contactMethod" id="contactMethod" class="form-control">
+ -->
+<!-- <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            <div *ngIf="firstName.errors.required">
+                First Name is required
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+                First Name doesn't match the pattern
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+        </textarea>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ngModel name="isSubscribed">Subscribe to mailing list
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="contactMethod">Contact Method</label>
+        <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+        </select>
+    </div>
+    <p>
+        {{f.value | json}}
+    </p>
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form> -->
+<!-- ----------------Drop-down list end------------------------ -->
+
+
+<!-- ----------------Radio button start------------------------ -->
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+        <label for="firstName"> First Name</label>
+        <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" type="text" id="firstName" class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            <div *ngIf="firstName.errors.required">
+                First Name is required
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                First Name should be minimum {{firstName.errors.minlength.requiredLength}} characters
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+                First Name doesn't match the pattern
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+        </textarea>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ngModel name="isSubscribed">Subscribe to mailing list
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="contactMethod">Contact Method</label>
+        <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+        </select>
+    </div>
+    <div *ngFor="let method of contactMethods" class="radio">
+        <label>
+            <input ngModel type="radio" name="contactMethod" [value]="method.id">
+            {{method.name}}
+        </label>
+    </div>
+    <p>
+        {{f.value | json}}
+    </p>
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 </form>
-<!-- ----------------Specific Validation errors end------------------------ -->
+<!-- ----------------Radio button end------------------------ -->

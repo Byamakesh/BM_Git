@@ -26,6 +26,7 @@ import { DirectivesComponentComponent } from './directives-component/directives-
 import { InputFormatDirective } from './input-format.directive';
 import { Assignment5ZippyComponent } from './assignment5-zippy/assignment5-zippy.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { Assignment6CourseFormComponent } from './assignment6-course-form/assignment6-course-form.component';
 
 @NgModule({
   declarations: [//all components, pipes, directives goes here
@@ -51,7 +52,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     DirectivesComponentComponent,
     InputFormatDirective,
     Assignment5ZippyComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    Assignment6CourseFormComponent
   ],
   imports: [
     BrowserModule,
