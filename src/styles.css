@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/* @import "~@fortawesome/fontawesome-free/css/all.css"; */
+
+body {
+    padding: 20px;
+}
+
+
+/* For all input fields error */
+
+.form-control.ng-invalid.ng-touched {
+    border: 2px solid red;
+}
